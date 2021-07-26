@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block title %}Обновление пользователя{% endblock%}
+
+{% block body %}
+    <div class="container mt-5">
+
+    <h1>Обновление пользователя</h1>
+    <form method="post">
+        <input type="text" name="username"  id="username" class="form-control" placeholder="Текущий логин: {{ field.username }}"><br>
+        <input name="email" id="email" type="text"  class="form-control" placeholder="Текущая почта: {{ field.email }}"><br>
+        <input name="password" id="password" type="text" class="form-control" placeholder="Текущий пароль: {{ field.password }}"><br>
+        <input name="updated_on" id="updated_on" type="Datetime"  class="form-control" placeholder="Изменен: {{ field.updated_on }}"><br>
+        <div class="form-check" name="admin"><input class="form-check-input" name="admin" type="checkbox"  id="admin"/>
+            <label class="form-check-label "  for="flexCheckDefault">Администратор</label>
+        </div>
+        <button type="submit" class="btn btn-success" style="margin: 10px 0 10px 0">Обновить</button>
+    </form>
+    </div>
+{% endblock%}

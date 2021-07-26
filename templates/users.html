@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block title %}Список пользователей{% endblock%}
+{% block body %}
+    <div class="container mt-5">
+    <h1>Наши пользователи</h1>
+
+{% if current_user.admin %}
+    <a href="/users/create" class="btn btn-success" style="margin: 10px 0 10px 0">Создать нового пользователя</a>
+    {% for i in articles %}
+    <div class="alert alert-info">
+        <h2>{{i.username}}</h2>
+        {% if i.admin %}
+            <p>Администратор</p>
+        {% else %}
+            <p>Пользователь</p>
+        {% endif %}
+        <p>{{ i.email }}</p>
+        <p><b>Дата регистрации : {{ i.date_registration.date()}}</b></p>
+        <a href="/users/{{ i.id }}/update" class="btn btn-warning">Редактировать</a>
+        {% if current_user.id!=i.id %}
+            <a href="/users/{{ i.id }}/delete" class="btn btn-danger">Удалить</a>
+        {% endif %}
+    </div>
+    {% endfor %}
+{% else %}
+    {% for i in articles %}
+    <div class="alert alert-info">
+        <h2>{{i.username}}</h2>
+        {% if i.admin %}
+            <p>Администратор</p>
+        {% else %}
+            <p>Пользователь</p>
+        {% endif %}
+        <p>{{ i.email }}</p>
+        <p><b>Дата регистрации : {{ i.date_registration.date()}}</b></p>
+    </div>
+    {% endfor %}
+{% endif %}
+{% endblock %}
